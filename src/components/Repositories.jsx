@@ -10,9 +10,15 @@ import {
   CardContent,
 } from "@material-ui/core";
 
+import styles from "../styles";
+
 export default function Repositories(props) {
+  const classes = styles();
+
   const username = props.history.location.state;
+  const setAppBarName = props.setAppBarName;
   // console.log(username);
+  const [name, setName] = useState(null);
   const [isRepoLoaded, setIsRepoLoaded] = useState(false);
   const [isOrgsLoaded, setIsOrgsLoaded] = useState(false);
   const [userRepo, setUserRepo] = useState([]);
@@ -23,46 +29,56 @@ export default function Repositories(props) {
       setUserRepo(result);
       setIsRepoLoaded(true);
     });
-  }, []);
+  }, [username.username]);
 
   useEffect(() => {
     getUserData(username.username).then((userData) => {
       setUserOrgs(userData.orgs);
+      // console.log(userData.user.name);
+      setName(userData.user.name);
       if (userOrgs.length === 0) return;
       setIsOrgsLoaded(true);
     });
-  }, []);
+  }, [username.username, userOrgs.length]);
+
+  useEffect(() => {
+    if (name === null) return;
+    setAppBarName(`${name}'s Repositories`);
+  }, [name, setAppBarName]);
 
   return (
     <main>
-      <CssBaseline />
-      <Container maxWidth="md" align="center">
-        <Grid container spacing={4}>
-          {isRepoLoaded &&
-            userRepo.map((repo) => {
-              return (
-                <Grid item key={repo.id} xs={12} sm={6} md={6}>
-                  <Card>
-                    <CardContent>
-                      <Repository repo={repo} />
-                    </CardContent>
-                  </Card>
-                </Grid>
-              );
-            })}
-        </Grid>
-      </Container>
-      {/* {isRepoLoaded &&
-          userRepo.map((repo) => {
-            return <Repository key={repo.id} repo={repo} />;
-          })} */}
-      <Container maxWidth="sm" align="center">
-        {isOrgsLoaded && (
-          <Button variant="contained" color="primary" size="large">
-            View Organisations
-          </Button>
-        )}
-      </Container>
+      <div className={classes.root}>
+        <CssBaseline />
+        <Container className={classes.cardGrid} maxWidth="md" align="center">
+          <Grid container spacing={4}>
+            {isRepoLoaded &&
+              userRepo.map((repo) => {
+                return (
+                  <Grid item key={repo.id} xs={12} sm={6} md={6}>
+                    <Card className={classes.card}>
+                      <CardContent className={classes.cardContent}>
+                        <Repository repo={repo} />
+                      </CardContent>
+                    </Card>
+                  </Grid>
+                );
+              })}
+          </Grid>
+        </Container>
+        <Container maxWidth="sm" align="center">
+          {isOrgsLoaded && (
+            <Button
+              className={classes.buttons}
+              variant="contained"
+              color="primary"
+              size="large"
+            >
+              {`View ${name}'s Organisations`}
+            </Button>
+          )}
+        </Container>
+      </div>
     </main>
   );
 }

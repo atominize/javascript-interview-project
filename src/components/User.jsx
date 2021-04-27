@@ -7,11 +7,16 @@ import {
   TextField,
 } from "@material-ui/core";
 
+import styles from "../styles";
+
 export default function User(props) {
+  const classes = styles();
+
   const [username, setUsername] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // console.log(props);
     props.history.push("/repository", { username });
   };
 
@@ -19,7 +24,7 @@ export default function User(props) {
     <>
       <CssBaseline />
       <main>
-        <div>
+        <div className={classes.root}>
           <Container maxWidth="sm">
             <form align="center">
               <Typography
@@ -43,6 +48,7 @@ export default function User(props) {
               />
               <Container maxWidth="sm" fixed>
                 <Button
+                  className={classes.buttons}
                   variant="contained"
                   color="primary"
                   size="large"

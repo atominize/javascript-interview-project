@@ -1,10 +1,11 @@
-# Getting Started with Create React App
+# Intro
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), material-ui and javascript.
 
-## Available Scripts
+## Getting started
 
-In the project directory, you can run:
+To build the project, first clone the repository.
+`cd` into the folder and run `npm start`.
 
 ### `npm start`
 

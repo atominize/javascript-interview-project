@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Typography,
   CssBaseline,
@@ -6,27 +6,51 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
-import { isUsernameEmpty } from "../utils/utils";
+import { isUsernameEmpty, isAValideUsername } from "../utils/utils";
 
 import styles from "../styles";
 
 export default function User(props) {
-  props.setAppBarName("Github Project");
   const classes = styles();
 
   const [username, setUsername] = useState("");
+  const [text, setText] = useState("");
   const [error, setError] = useState(false);
+
+  const handleInput = (e) => {
+    e.preventDefault();
+    setUsername(e.target.value);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (isUsernameEmpty(username)) {
+      setText("Enter Username");
       setError(true);
       return;
     } else {
       setError(false);
     }
-    props.history.push("/repository", { username });
+    isAValideUsername(username)
+      .then((result) => {
+        return result;
+      })
+      .then((bool) => {
+        if (bool) {
+          props.history.push("/repository", { username });
+        } else {
+          setText("Invalid username");
+          setError(true);
+        }
+      });
+    // if (!proceed) {
+    // }
+    // console.log(isAValideUsername(username));
   };
+
+  useEffect(() => {
+    props.setAppBarName("Github Project");
+  });
 
   return (
     <>
@@ -54,10 +78,9 @@ export default function User(props) {
                 label="required"
                 size="small"
                 error={error}
+                helperText={text}
                 value={username}
-                onChange={(event) => {
-                  setUsername(event.target.value);
-                }}
+                onChange={handleInput}
               />
               <Container maxWidth="sm" fixed>
                 <Button

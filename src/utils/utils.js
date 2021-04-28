@@ -1,5 +1,16 @@
-const isUsernameEmpty = (value) => {
-  return value === "";
+import { getUserData } from "../api/github-api";
+
+export const isUsernameEmpty = (username) => {
+  return username === "";
 };
 
-module.exports = { isUsernameEmpty };
+export const isAValideUsername = (username) => {
+  const result = getUserData(username)
+    .then(() => {
+      return true;
+    })
+    .catch(() => {
+      return false;
+    });
+  return result;
+};

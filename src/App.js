@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, CssBaseline } from "@material-ui/core";
 import User from "./components/User";
 import Repositories from "./components/Repositories";
+import Organisations from "./components/Organistions";
 import { useState } from "react";
 
 function App() {
@@ -17,14 +18,24 @@ function App() {
       </AppBar>
       <Router>
         <Switch>
-          <Route path="/organisation">Organisations</Route>
+          <Route
+            path="/organisation"
+            render={(props) => (
+              <Organisations setAppBarName={setAppBarName} {...props} />
+            )}
+          />
           <Route
             path="/repository"
             render={(props) => (
               <Repositories setAppBarName={setAppBarName} {...props} />
             )}
           />
-          <Route path="/" component={User} />
+          <Route
+            path="/"
+            render={(props) => (
+              <User setAppBarName={setAppBarName} {...props} />
+            )}
+          />
         </Switch>
       </Router>
     </>

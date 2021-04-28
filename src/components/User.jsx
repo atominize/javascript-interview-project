@@ -10,6 +10,7 @@ import {
 import styles from "../styles";
 
 export default function User(props) {
+  props.setAppBarName("Github Project");
   const classes = styles();
 
   const [username, setUsername] = useState("");
@@ -37,10 +38,13 @@ export default function User(props) {
               </Typography>
               <Typography variant="h6">
                 {" "}
-                Please enter your github username:
+                Please Enter Your Github Username:
               </Typography>
               <TextField
+                className={classes.textField}
                 variant="outlined"
+                required
+                label="required"
                 size="small"
                 onChange={(event) => {
                   setUsername(event.target.value);
@@ -48,6 +52,7 @@ export default function User(props) {
               />
               <Container maxWidth="sm" fixed>
                 <Button
+                  type="submit"
                   className={classes.buttons}
                   variant="contained"
                   color="primary"

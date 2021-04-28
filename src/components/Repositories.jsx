@@ -24,6 +24,18 @@ export default function Repositories(props) {
   const [userRepo, setUserRepo] = useState([]);
   const [userOrgs, setUserOrgs] = useState([]);
 
+  const handleViewOrgs = (e) => {
+    e.preventDefault();
+    // console.log(props);
+    props.history.push("/organisation", { username, name, userOrgs });
+  };
+
+  const handleNewSearch = (e) => {
+    e.preventDefault();
+    // console.log(props);
+    props.history.push("/");
+  };
+
   useEffect(() => {
     getRepos(username.username).then((result) => {
       setUserRepo(result);
@@ -73,10 +85,23 @@ export default function Repositories(props) {
               variant="contained"
               color="primary"
               size="large"
+              onClick={handleViewOrgs}
             >
               {`View ${name}'s Organisations`}
             </Button>
           )}
+        </Container>
+        <Container maxWidth="sm" align="center">
+          <Button
+            className={classes.buttons}
+            variant="contained"
+            color="primary"
+            size="large"
+            disabled={false}
+            onClick={handleNewSearch}
+          >
+            {`Search for A Different user`}
+          </Button>
         </Container>
       </div>
     </main>

@@ -5,7 +5,7 @@ const styles = makeStyles((theme) => ({
     padding: theme.spacing(0, 0, 6),
   }),
   buttons: () => ({
-    marginTop: "40px",
+    marginTop: "20px",
   }),
   cardGrid: () => ({
     marginTop: "40px",
@@ -17,6 +17,9 @@ const styles = makeStyles((theme) => ({
   }),
   cardContent: () => ({
     flexGrow: 1,
+  }),
+  textField: () => ({
+    marginTop: "20px",
   }),
 }));
 

@@ -1,5 +1,5 @@
 const isUsernameEmpty = (value) => {
-  alert("hello");
+  return value === "";
 };
 
 module.exports = { isUsernameEmpty };

@@ -6,6 +6,7 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
+import { isUsernameEmpty } from "../utils/utils";
 
 import styles from "../styles";
 
@@ -14,10 +15,16 @@ export default function User(props) {
   const classes = styles();
 
   const [username, setUsername] = useState("");
+  const [error, setError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // console.log(props);
+    if (isUsernameEmpty(username)) {
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
     props.history.push("/repository", { username });
   };
 
@@ -46,6 +53,8 @@ export default function User(props) {
                 required
                 label="required"
                 size="small"
+                error={error}
+                value={username}
                 onChange={(event) => {
                   setUsername(event.target.value);
                 }}

@@ -1,7 +1,7 @@
 import React from "react";
 import { CssBaseline, Typography } from "@material-ui/core";
 
-export default function Organisation({ org }) {
+const Organisation = ({ org }) => {
   return (
     <>
       <CssBaseline />
@@ -13,4 +13,6 @@ export default function Organisation({ org }) {
       </Typography>
     </>
   );
-}
+};
+
+export default Organisation;

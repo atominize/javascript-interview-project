@@ -12,7 +12,7 @@ import {
 
 import styles from "../styles";
 
-export default function Repositories(props) {
+const Repositories = (props) => {
   const classes = styles();
 
   const username = props.history.location.state;
@@ -106,4 +106,6 @@ export default function Repositories(props) {
       </div>
     </main>
   );
-}
+};
+
+export default Repositories;

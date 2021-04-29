@@ -10,8 +10,9 @@ import {
 import Organisation from "./Organisation";
 
 import styles from "../styles";
+import Repositories from "./Repositories";
 
-export default function Organistions(props) {
+const Organistions = (props) => {
   const classes = styles();
 
   const data = props.history.location.state;
@@ -61,4 +62,6 @@ export default function Organistions(props) {
       </div>
     </main>
   );
-}
+};
+
+export default Organistions;

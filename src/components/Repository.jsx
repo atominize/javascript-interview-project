@@ -1,7 +1,7 @@
 import React from "react";
 import { CssBaseline, Typography } from "@material-ui/core";
 
-export default function Repository({ repo }) {
+const Repository = ({ repo }) => {
   // console.log(repo);
   return (
     <>
@@ -11,4 +11,6 @@ export default function Repository({ repo }) {
       </Typography>
     </>
   );
-}
+};
+
+export default Repository;

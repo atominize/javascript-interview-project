@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { AppBar, Toolbar, Typography, CssBaseline } from "@material-ui/core";
-import User from "./components/User";
+import User from "./components/User/User";
 import Repositories from "./components/Repositories";
 import Organisations from "./components/Organistions";
 import { useState } from "react";
 
-function App() {
+const App = () => {
   const [appBarName, setAppBarName] = useState("Github Project");
 
   return (
@@ -40,6 +40,6 @@ function App() {
       </Router>
     </>
   );
-}
+};
 
 export default App;

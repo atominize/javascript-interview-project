@@ -6,11 +6,11 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
-import { isUsernameEmpty, isAValideUsername } from "../utils/utils";
+import { isUsernameEmpty, isAValideUsername } from "../../utils/utils";
 
-import styles from "../styles";
+import styles from "../../styles";
 
-export default function User(props) {
+const User = (props) => {
   const classes = styles();
 
   const [username, setUsername] = useState("");
@@ -100,4 +100,6 @@ export default function User(props) {
       </main>
     </>
   );
-}
+};
+
+export default User;

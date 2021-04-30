@@ -10,7 +10,6 @@ import {
 import Organisation from "./Organisation";
 
 import styles from "../styles";
-import Repositories from "./Repositories";
 
 const Organistions = (props) => {
   const classes = styles();

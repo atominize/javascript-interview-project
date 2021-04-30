@@ -13,7 +13,9 @@ const App = () => {
       <CssBaseline />
       <AppBar position="sticky">
         <Toolbar>
-          <Typography variant="h6">{appBarName}</Typography>
+          <Typography variant="h6" data-testid="app-bar-typo">
+            {appBarName}
+          </Typography>
         </Toolbar>
       </AppBar>
       <Router>

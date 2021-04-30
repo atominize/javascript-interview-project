@@ -68,7 +68,6 @@ const User = (props) => {
                 Welcome
               </Typography>
               <Typography variant="h6">
-                {" "}
                 Please Enter Your Github Username:
               </Typography>
               <TextField
@@ -77,6 +76,7 @@ const User = (props) => {
                 required
                 label="required"
                 size="small"
+                inputProps={{ "data-testid": "input-username" }}
                 error={error}
                 helperText={text}
                 value={username}
@@ -89,6 +89,7 @@ const User = (props) => {
                   variant="contained"
                   color="primary"
                   size="large"
+                  data-testid="submit-btn"
                   onClick={handleSubmit}
                 >
                   Submit

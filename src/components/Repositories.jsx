@@ -8,6 +8,8 @@ import {
   Grid,
   Card,
   CardContent,
+  Backdrop,
+  CircularProgress,
 } from "@material-ui/core";
 
 import styles from "../styles";
@@ -19,6 +21,7 @@ const Repositories = (props) => {
   const setAppBarName = props.setAppBarName;
   // console.log(username);
   const [name, setName] = useState(null);
+  const [showBackdrop, setShowBackdrop] = useState(true);
   const [isRepoLoaded, setIsRepoLoaded] = useState(false);
   const [isOrgsLoaded, setIsOrgsLoaded] = useState(false);
   const [userRepo, setUserRepo] = useState([]);
@@ -40,6 +43,7 @@ const Repositories = (props) => {
     getRepos(username.username).then((result) => {
       setUserRepo(result);
       setIsRepoLoaded(true);
+      setShowBackdrop(false);
     });
   }, [username.username]);
 
@@ -62,6 +66,13 @@ const Repositories = (props) => {
     <main>
       <div className={classes.root}>
         <CssBaseline />
+        {showBackdrop && (
+          <Container className={classes.cardGrid} maxWidth="md" align="center">
+            <Backdrop className={classes.backdrop} open>
+              <CircularProgress color="inherit" />
+            </Backdrop>
+          </Container>
+        )}
         <Container className={classes.cardGrid} maxWidth="md" align="center">
           <Grid container spacing={4}>
             {isRepoLoaded &&

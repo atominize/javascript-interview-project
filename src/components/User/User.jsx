@@ -6,7 +6,11 @@ import {
   Button,
   TextField,
 } from "@material-ui/core";
-import { isUsernameEmpty, isAValideUsername } from "../../utils/utils";
+import {
+  isUsernameEmpty,
+  isAValideUsername,
+  isOnline,
+} from "../../utils/utils";
 
 import styles from "../../styles";
 
@@ -26,6 +30,14 @@ const User = (props) => {
     e.preventDefault();
     if (isUsernameEmpty(username)) {
       setText("Enter Username");
+      setError(true);
+      return;
+    } else {
+      setError(false);
+    }
+
+    if (!isOnline()) {
+      setText("No internet connection");
       setError(true);
       return;
     } else {

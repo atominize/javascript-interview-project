@@ -58,9 +58,11 @@ const Repositories = (props) => {
   }, [username.username, userOrgs.length]);
 
   useEffect(() => {
-    if (name === null) return;
+    if (name === null) {
+      setName(username.username);
+    }
     setAppBarName(`${name}'s Repositories`);
-  }, [name, setAppBarName]);
+  }, [name, setAppBarName, username.username]);
 
   return (
     <main>
@@ -89,8 +91,8 @@ const Repositories = (props) => {
               })}
           </Grid>
         </Container>
-        <Container maxWidth="sm" align="center">
-          {isOrgsLoaded && (
+        {isOrgsLoaded && (
+          <Container maxWidth="sm" align="center">
             <Button
               className={classes.buttons}
               variant="contained"
@@ -100,8 +102,21 @@ const Repositories = (props) => {
             >
               {`View ${name}'s Organisations`}
             </Button>
-          )}
-        </Container>
+          </Container>
+        )}
+        {!isOrgsLoaded && (
+          <Container maxWidth="sm" align="center">
+            <Button
+              className={classes.buttons}
+              variant="contained"
+              color="primary"
+              size="large"
+              disabled
+            >
+              {`${name} Have No Organisation`}
+            </Button>
+          </Container>
+        )}
         <Container maxWidth="sm" align="center">
           <Button
             className={classes.buttons}

@@ -1,6 +1,6 @@
 # Intro
 
-This project was built with [React](https://github.com/facebook/create-react-app) and material-ui.
+This project was built with [React](https://github.com/facebook/create-react-app) and [Material-ui](https://material-ui.com).
 
 ## Getting started
 

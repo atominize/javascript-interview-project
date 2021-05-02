@@ -71,7 +71,7 @@ const Repositories = (props) => {
         {showBackdrop && (
           <Container className={classes.cardGrid} maxWidth="md" align="center">
             <Backdrop className={classes.backdrop} open>
-              <CircularProgress color="inherit" />
+              <CircularProgress color="primary" />
             </Backdrop>
           </Container>
         )}

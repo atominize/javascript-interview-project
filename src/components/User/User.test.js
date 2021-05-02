@@ -37,6 +37,32 @@ describe("#User", () => {
     });
   });
 
+  describe("#Input Element", () => {
+    test("should be able to change input", () => {
+      const { getByTestId } = newRender;
+      const inputUsername = getByTestId("input-username");
+
+      expect(inputUsername.value).toBe("");
+      act(() => {
+        fireEvent.input(inputUsername, {
+          target: {
+            value: "atominize",
+          },
+        });
+      });
+      expect(inputUsername.value).toBe("atominize");
+    });
+  });
+
+  describe("#Submit Button", () => {
+    test("should display submit", () => {
+      const { getByTestId } = newRender;
+      const submitBtn = getByTestId("submit-btn");
+
+      expect(submitBtn.textContent).toBe("Submit");
+    });
+  });
+
   describe("#Error Message", () => {
     test("should display error message if user click user on submit without entering github username", () => {
       const { getByTestId } = newRender;
